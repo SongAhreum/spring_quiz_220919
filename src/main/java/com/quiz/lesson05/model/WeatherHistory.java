@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class WeatherHistory {
 	private int id;
+	//파라미터를 ModelAttribute로받게되면 추가 ->@DateTimeFormat(pattern="yyyy-MM-dd")
+	//하나씩 받아서(@Param()) map으로 받으면 파라미터에 어노테이션 붙여줌 
 	private Date date;
 	private String weather;
 	private double temperatures;
