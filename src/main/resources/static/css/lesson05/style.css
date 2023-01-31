@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+#wrap {width:1200px;}
+
+nav{background-color:cornflowerblue;}
+
+footer{height:100px;}
+
+.menu{
+	color:white;
+	font-size:17px;
+	margin-right:10px;
+}
+
+.menu:hover{
+	color:white;
+	
+}
+.logo {font-size:20px}
+
+.form-group{white-space : nowrap;}
