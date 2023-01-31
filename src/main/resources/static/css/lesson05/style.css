@@ -8,14 +8,15 @@ footer{height:100px;}
 
 .menu{
 	color:white;
-	font-size:17px;
-	margin-right:10px;
+	font-size:17px;	
 }
 
 .menu:hover{
 	color:white;
 	
 }
-.logo {font-size:20px}
+.logo {font-size:30px}
 
 .form-group{white-space : nowrap;}
+
+.nav-item{margin-top:8px; font-weight:500;}
