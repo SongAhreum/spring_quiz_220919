@@ -47,7 +47,7 @@ public class WeatherHistoryController {
 			@RequestParam("windSpeed") double windSpeed
 			) {
 		weatherHistoryBO.addWeatherHistory(date, weather, temperatures, precipitation, microDust, windSpeed);		
-		//response.sendRedirect("/lesson05/weather_history")
+		//파라미터에 HttpServletResponse response추가 후(windSpeed뒤)  response.sendRedirect("/lesson05/weather_history")
 		return"redirect:/lesson05/weather_history";
 	}
 }
