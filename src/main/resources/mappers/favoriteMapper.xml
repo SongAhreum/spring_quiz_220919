@@ -17,7 +17,7 @@
 	 		,NOW()
  		)
  	</insert>
- 	<select id="seletFavorite" resultType="com.quiz.lesson06.model.Favorite">
+ 	<select id="seletFavoriteList" resultType="com.quiz.lesson06.model.Favorite">
  		SELECT
  			`id`
 			,`name`

@@ -39,24 +39,37 @@
 			let name = $('#name').val().trim();
 			let url = $('#url').val().trim();
 			
-			if(name.length == ''){
-				alert('제목을 입력하세요')
+			if(name == ''){
+				alert('제목을 입력하세요');
+				return;
 			}
 			if(url.length < 1){
-				alert('주소를 입력하세요')
+				alert('주소를 입력하세요');
+				return;
+			}
+			//http로 시작하지도 않고 https로 시작하지도 않을 경우 alert
+			if(url.startsWith('http') == false && url.startsWith('https') == false ){
+				alert('주소를 형식이 잘못되었습니다.');
+				return;
 			}
 			$.ajax({
+				//요청,다시돌아오는 함수=>콜백함수(success함수,error함수)
 				//request
 				type:"POST"
 				,url:"/lesson06/quiz01/add_favorite"
 				,data:{"name":name,"url":url}
+				
 				//response
-				,success:function(data){
-					alert(data);
-					location.href="/lesson06/quiz01/after_add_favorite"
+				//ajax이 string으로 내려온 json 파싱해서 object로 내부적으로 변환.객체로서 사용(ajax은 무조건 string을 내리는구나~(json이라 key로 value꺼내려고해도 안됨)) 
+				,success:function(data){ //String JSON => Object(헤더에서 응답값이 text json이라고 내려줌,ajax이 파싱해서 object로 변환해 받음)
+					alert(data);//(object object)로 넘어옴
+					
+					if(data.result == "성공"){
+					location.href="/lesson06/quiz01/after_add_favorite_view"
+					}
 				}
 				,error:function(e){
-					alert("에러")
+					alert("에러"+ e);
 				}
 			})
 		})		

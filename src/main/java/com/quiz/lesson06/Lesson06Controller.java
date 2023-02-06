@@ -1,6 +1,8 @@
 package com.quiz.lesson06;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,9 +30,9 @@ public class Lesson06Controller {
 	}
 
 	
-	@ResponseBody
+	@ResponseBody //ajax :view가 없다는 뜻, model은 담아 jsp에서 쓰기때문에 model안씀 
 	@PostMapping("/quiz01/add_favorite")
-	public String addFavorite(
+	public Map<String,String> addFavorite(
 			@RequestParam(value="name",required=true) String name,
 			@RequestParam(value="url",required=true) String url
 			) {
@@ -38,11 +40,14 @@ public class Lesson06Controller {
 		//db insert
 		favoriteBO.addFavorite(name,url);
 		
+		//성공값 응답값(api형태 정해진 json모양? (String이아닌 객체일때 json변환):list,ma등)
+		Map<String,String> result = new HashMap<>();
+		result.put("result","성공");
 		
-		return"입력성공";
+		return result; //jackson => JSON String
 	}
 	
-	@GetMapping("/quiz01/after_add_favorite")
+	@GetMapping("/quiz01/after_add_favorite_view")
 	public String afterAddFavorite(Model model) {
 		//db select
 		List<Favorite> favorite = favoriteBO.getFavorite();

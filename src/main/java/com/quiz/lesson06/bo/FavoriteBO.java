@@ -18,6 +18,6 @@ public class FavoriteBO {
 		favoriteDAO.insertFavorite(name, url);
 	}
 	public List<Favorite> getFavorite() {
-		return favoriteDAO.seletFavorite();
+		return favoriteDAO.seletFavoriteList();
 	}
 }

@@ -13,5 +13,5 @@ public interface FavoriteDAO {
 	public void insertFavorite(
 			@Param("name") String name,
 			@Param("url") String url);
-	public List<Favorite> seletFavorite();
+	public List<Favorite> seletFavoriteList();
 }
