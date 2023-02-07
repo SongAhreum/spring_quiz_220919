@@ -14,4 +14,10 @@ public interface FavoriteDAO {
 			@Param("name") String name,
 			@Param("url") String url);
 	public List<Favorite> seletFavoriteList();
+	
+	public boolean existFavoriteByUrl(String url);
+	
+	public void deleteFavoriteById(int id);
+	
+	//public int deleteFavoriteById(int id);
 }

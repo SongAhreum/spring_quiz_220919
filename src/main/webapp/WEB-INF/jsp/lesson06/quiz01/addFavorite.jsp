@@ -22,11 +22,16 @@
 		<div class="form-group">
 			<label for="name">제목</label>
 			<input type="text" name="name" id="name" class="form-control">
+			<small id="nameStatusArea"></small>
 		</div>
+		
+		
 		<div class="form-group">
 			<label for="url">주소</label>
 			<input type="text" name="url" id="url" class="form-control">
-		</div>
+			<small id="urlStatusArea"></small>
+		</div>		
+		
 		
 		<input id="addBotton" type="botton" class="btn btn-success" value="추가">
 	
@@ -38,39 +43,70 @@
 		$('#addBotton').on('click',function(){
 			let name = $('#name').val().trim();
 			let url = $('#url').val().trim();
+			$('#nameStatusArea').empty();
+			$('#urlStatusArea').empty();
+			
 			
 			if(name == ''){
-				alert('제목을 입력하세요');
+				//alert('이름을 입력하세요');
+				$('#nameStatusArea').append('<span class="text-danger">이름을 입력하세요</span>');
 				return;
 			}
 			if(url.length < 1){
-				alert('주소를 입력하세요');
+				//alert('주소를 입력하세요');
+				$('#urlStatusArea').append('<span class="text-danger">주소를을 입력하세요</span>');
 				return;
 			}
 			//http로 시작하지도 않고 https로 시작하지도 않을 경우 alert
 			if(url.startsWith('http') == false && url.startsWith('https') == false ){
-				alert('주소를 형식이 잘못되었습니다.');
+				//alert('주소를 형식이 잘못되었습니다.');
+				$('#urlStatusArea').append('<span class="text-danger">주소형식이 잘못되었습니다.</span>')
 				return;
 			}
+			
+			
 			$.ajax({
-				//요청,다시돌아오는 함수=>콜백함수(success함수,error함수)
 				//request
-				type:"POST"
-				,url:"/lesson06/quiz01/add_favorite"
-				,data:{"name":name,"url":url}
-				
+				type:"get"
+				,url:"/lesson06/quiz01/url_duplication"
+				,data:{"url":url}
 				//response
-				//ajax이 string으로 내려온 json 파싱해서 object로 내부적으로 변환.객체로서 사용(ajax은 무조건 string을 내리는구나~(json이라 key로 value꺼내려고해도 안됨)) 
-				,success:function(data){ //String JSON => Object(헤더에서 응답값이 text json이라고 내려줌,ajax이 파싱해서 object로 변환해 받음)
-					alert(data);//(object object)로 넘어옴
-					
-					if(data.result == "성공"){
-					location.href="/lesson06/quiz01/after_add_favorite_view"
+				,success:function(data){
+					if(data.url_duplication){
+						$('#urlStatusArea').append('<span class="text-danger">중복된 주소입니다</span>');
 					}
+					if(data.url_duplication == false){
+						//중복확인 버튼 따로 만들었을때 해당버튼에 이벤트걸기
+						//$('#urlStatusArea').append('<span class="text-danger">저장 가능한 주소입니다</span>');
+						//위처럼 하던가, 중복시,중복아닐시 둘다 d-none해놓고 이벤트때 해당될때(if) 해당태그 id불러와서 removeClass('d-none')함수쓰기(다른내용은 addClass()사용)
+						//if안에 removeClass,addClass함수둘다써야 둘중에 하나만 나타남
+						$.ajax({
+							//요청,다시돌아오는 함수=>콜백함수(success함수,error함수)
+							//request
+							type:"POST"
+							,url:"/lesson06/quiz01/add_favorite"
+							,data:{"name":name,"url":url}
+							
+							//response
+							//ajax이 string으로 내려온 json 파싱해서 object로 내부적으로 변환.객체로서 사용(ajax은 무조건 string을 내리는구나~(json이라 key로 value꺼내려고해도 안됨)) 
+							,success:function(data){ //String JSON => Object(헤더에서 응답값이 text json이라고 내려줌,ajax이 파싱해서 object로 변환해 받음)
+								//alert(data);//(object object)로 넘어옴
+								
+								if(data.result == "성공"){
+								location.href="/lesson06/quiz01/after_add_favorite_view"
+								}
+							}
+							,error:function(e){
+								alert("에러"+ e);
+							}				
+						})
+					}
+					
 				}
 				,error:function(e){
 					alert("에러"+ e);
 				}
+				
 			})
 		})		
 	})

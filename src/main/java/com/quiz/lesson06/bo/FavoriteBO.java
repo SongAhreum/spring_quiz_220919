@@ -20,4 +20,16 @@ public class FavoriteBO {
 	public List<Favorite> getFavorite() {
 		return favoriteDAO.seletFavoriteList();
 	}
+	
+	public boolean existFavoriteByUrl(String url) {
+		return favoriteDAO.existFavoriteByUrl(url);
+	}
+	
+	public void deleteFavoriteById(int id) {
+		favoriteDAO.deleteFavoriteById(id);
+	}
+	//수업풀이
+//	public int deleteFavoriteById(int id) {
+//		return favoriteDAO.deleteFavoriteById(id);
+//	}
 }
