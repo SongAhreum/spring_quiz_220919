@@ -99,7 +99,7 @@ public class Lesson06Controller {
 	public Map<String,Object> deleteFavorite(
 			@RequestParam("id") int id
 			) {
-		Map<String,Object> = new HashMap<>();
+		Map<String,Object> result = new HashMap<>();
 		
 		//db delete
 		int row = favoriteBO.deleteFavoriteById(int id);

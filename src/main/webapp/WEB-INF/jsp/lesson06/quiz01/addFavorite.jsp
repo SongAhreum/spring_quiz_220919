@@ -33,7 +33,7 @@
 		</div>		
 		
 		
-		<input id="addBotton" type="botton" class="btn btn-success" value="추가">
+		<input id="addBotton" type="button" class="btn btn-success" value="추가">
 	
 	</div>
 	

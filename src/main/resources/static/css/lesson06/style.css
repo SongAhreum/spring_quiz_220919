@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+#wrap{width:1200px; margin:auto;}
+
+.logo{margin:auto;width:400px;display:block;}
+.logo-link{color:#505050;font-size:60px;}
+.logo-link:hover{text-decoration: none;color:#787878;}
+
+.nav{display:flex;height:60px;background-color:#F49551;}
+.nav-item{}
+.nav-link{text-decoration: none; color:white; font-size:20px;display:block;text-align:center;height:100%;}
+.nav-link:hover{color:black;}
+
+.bottom{display:flex;height:250px;}
+.b-side{background-color:#D27328; display:flex; justify-content: center;}
+.l-text{color:white;font-size:60px;margin:auto;}
+.r-text{color:white; font-size:30px; margin:auto; font-weight:bold; display:flex;justify-content: center;}
+.check-box{background-color:#F49551;color:white;}
+.input-group{justify-content: flex-end;align-items: flex-end;}
+.input-text1{font-size:40px;}
+.check-btn{float:right;}
+
+
+.hyphen{font-size:30px;}
+h1{font-weight:bold; display:flex; justify-content: center;}
+.contents{width:700px; margin:auto;}
+small{color:gray;}
